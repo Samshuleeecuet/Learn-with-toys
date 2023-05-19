@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const Category = () => {
+    const [category,setCategory] = useState('science-kit')
+    const handleCategory = (value)=>{
+        setCategory(value)
+        console.log(value)
+    }
     return (
         <div className='font-serif mt-12'>
             <div>
@@ -12,9 +17,9 @@ const Category = () => {
             <div>
             <Tabs>
                 <TabList className='text-center'>
-                <Tab>Science kits</Tab>
-                <Tab>Math Learning Toys</Tab>
-                <Tab>Engineering kits</Tab>
+                <Tab onClick={()=>handleCategory('science-kit')}>Science kits</Tab>
+                <Tab onClick={()=>handleCategory('math-learning-toys')}>Math Learning Toys</Tab>
+                <Tab onClick={()=>handleCategory('engineering-kits')}>Engineering kits</Tab>
                 </TabList>
 
                 <TabPanel className='border-t-2'>
