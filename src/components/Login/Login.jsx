@@ -23,7 +23,7 @@ const Login = () => {
               
                <input className='border rounded-lg h-12 w-72 mb-4 pl-4 border-blue-400' defaultValue="" placeholder='Enter Your Password' {...register("password",{required: true})} required />
                <br/>
-               <p className='pb-4'>Don't have an account? <Link className='link-hover' to='/register'>Register</Link></p>
+               <p className='pb-4'>Don't have an account? <Link className='link-hover text-blue-700' to='/register'>Register</Link></p>
                
                <input className='btn btn-primary' type="submit" value="Login" />
                <div className="divider">OR</div>
