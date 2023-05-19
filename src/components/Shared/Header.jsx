@@ -22,7 +22,7 @@ const Header = () => {
                 </ul>
                 </div>
                 <Link className='ml-5'>
-                <div className='flex items-center'>
+                <div className='flex items-center font-serif'>
                     <img className='h-12 rounded-full pr-2' src={logo} />
                     <p className="font-bold text-xl">Learn With Toys</p>
                 </div>
