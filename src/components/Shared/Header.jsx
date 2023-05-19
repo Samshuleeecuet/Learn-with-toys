@@ -9,6 +9,8 @@ const Header = () => {
         <li><NavLink  to='/mytoys' className={({ isActive }) => (isActive ? 'active' : 'default')}>My Toys</NavLink></li>
         <li><NavLink  to='/addtoy' className={({ isActive }) => (isActive ? 'active' : 'default')}>Add a Toy</NavLink></li>
         <li><NavLink  to='/blog' className={({ isActive }) => (isActive ? 'active' : 'default')}>Blogs</NavLink></li>
+        <li><NavLink  to='/login' className={({ isActive }) => (isActive ? 'active' : 'default')}>Login</NavLink></li>
+        <li><NavLink  to='/register' className={({ isActive }) => (isActive ? 'active' : 'default')}>Register</NavLink></li>
     </div>
     return (
         <div className="navbar bg-base-100 glass">
@@ -34,6 +36,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end mr-10">
+                <Link to='/logout' className='btn btn-primary mr-4'>Log Out</Link>
                 <div className="avatar tooltip tooltip-bottom" data-tip="Shakil">
                     <div className="w-14 rounded-full">
                         <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />

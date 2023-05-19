@@ -22,8 +22,8 @@ const Gallery = () => {
     return (
 
         <div className='lg:flex lg:ml-5 lg:mr-12 lg:mt-12 items-center'>
-            <div className='w-5/12'>
-            <ImageGallery items={images} />
+            <div className='w-5/12 h-[600px]'>
+            <ImageGallery autoPlay={true} items={images} />
             </div>
             <div className='flex-grow lg:pl-64'>
                  <p className='font-bold text-5xl font-serif pb-10'>Learn About</p>

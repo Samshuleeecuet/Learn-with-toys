@@ -8,6 +8,8 @@ import MyToys from "../components/MyToy/MyToys";
 import AddToy from "../components/AddToy/AddToy";
 import Blog from "../components/Blog/Blog";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
+import Register from "../components/Login/Register";
+import Login from "../components/Login/Login";
 
   const router = createBrowserRouter([
     {
@@ -34,6 +36,14 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
         {
             path : 'blog',
             element: <Blog/>
+        },
+        {
+          path : 'register',
+          element: <Register/>
+        },
+        {
+          path: 'login',
+          element: <Login/>
         }
 
       ]
