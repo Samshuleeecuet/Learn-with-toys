@@ -7,11 +7,13 @@ import AllToys from "../components/AllToy/AllToys";
 import MyToys from "../components/MyToy/MyToys";
 import AddToy from "../components/AddToy/AddToy";
 import Blog from "../components/Blog/Blog";
+import ErrorPage from "../components/ErrorPage/ErrorPage";
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: <HomeLayout/>,
+      errorElement: <ErrorPage/>,
       children:[
         {
             path: '/',
@@ -30,7 +32,7 @@ import Blog from "../components/Blog/Blog";
             element: <AddToy/>
         },
         {
-            path : 'blog',
+            path : 'blo',
             element: <Blog/>
         }
 

@@ -11,7 +11,7 @@ const Header = () => {
         <li><NavLink  to='/blog' className={({ isActive }) => (isActive ? 'active' : 'default')}>Blogs</NavLink></li>
     </div>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 glass">
             <div className="navbar-start">
                 <div className="dropdown">
                 <label tabIndex={0} className="btn btn-ghost lg:hidden">
