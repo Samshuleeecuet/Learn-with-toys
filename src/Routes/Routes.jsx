@@ -10,6 +10,7 @@ import Blog from "../components/Blog/Blog";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Register from "../components/Login/Register";
 import Login from "../components/Login/Login";
+import PrivateRoutes from "./PrivateRoutes";
 
   const router = createBrowserRouter([
     {
@@ -27,11 +28,11 @@ import Login from "../components/Login/Login";
         },
         {
             path: 'mytoys',
-            element: <MyToys/>
+            element: <PrivateRoutes><MyToys/></PrivateRoutes>
         },
         {
             path: 'addtoy',
-            element: <AddToy/>
+            element: <PrivateRoutes><AddToy/></PrivateRoutes>
         },
         {
             path : 'blog',

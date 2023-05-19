@@ -1,13 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { FaGoogle} from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 
 const Login = () => {
     const {loginwithEmail,loginwithGoogle} = useContext(AuthContext)
-    const [error,setError] = useState('')
+    const [error,setError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data =>{
         console.log(data)
@@ -15,7 +18,7 @@ const Login = () => {
         loginwithEmail(data.email,data.password)
         .then(result=>{
             const loggedUser = result.user
-            console.log(loggedUser)
+            navigate(from,{replace:true});
         })
         .catch(err=>{
             const msg = err.message.split('/')[1];

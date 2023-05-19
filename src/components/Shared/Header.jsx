@@ -4,15 +4,23 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Header = () => {
-    const {logOut} = useContext(AuthContext)
+    const {logOut,user} = useContext(AuthContext)
     const navList = <div className="lg:flex">
         <li><NavLink to='/' className={({ isActive }) => (isActive ? 'active' : 'default')}>Home</NavLink></li>
         <li><NavLink to='/alltoys' className={({ isActive }) => (isActive ? 'active' : 'default')}>All Toys</NavLink></li>
-        <li><NavLink  to='/mytoys' className={({ isActive }) => (isActive ? 'active' : 'default')}>My Toys</NavLink></li>
+        {
+            user && <>
+            <li><NavLink  to='/mytoys' className={({ isActive }) => (isActive ? 'active' : 'default')}>My Toys</NavLink></li>
         <li><NavLink  to='/addtoy' className={({ isActive }) => (isActive ? 'active' : 'default')}>Add a Toy</NavLink></li>
+            </>
+        }
         <li><NavLink  to='/blog' className={({ isActive }) => (isActive ? 'active' : 'default')}>Blogs</NavLink></li>
-        <li><NavLink  to='/login' className={({ isActive }) => (isActive ? 'active' : 'default')}>Login</NavLink></li>
+        {
+            !user && <>
+            <li><NavLink  to='/login' className={({ isActive }) => (isActive ? 'active' : 'default')}>Login</NavLink></li>
         <li><NavLink  to='/register' className={({ isActive }) => (isActive ? 'active' : 'default')}>Register</NavLink></li>
+            </>
+        }
     </div>
     return (
         <div className="navbar bg-base-100 glass">
@@ -37,14 +45,19 @@ const Header = () => {
                     {navList}
                 </ul>
             </div>
-            <div className="navbar-end mr-10">
+            {
+                user && <>
+                <div className="navbar-end mr-10">
                 <Link onClick={logOut} className='btn btn-primary mr-4'>Log Out</Link>
-                <div className="avatar tooltip tooltip-bottom" data-tip="Shakil">
+                <div className="avatar tooltip tooltip-bottom" data-tip={user.displayName
+}>
                     <div className="w-14 rounded-full">
-                        <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        <img src={user.photoURL} />
                     </div>
                 </div>
             </div>
+                </>
+            }
         </div>
     );
 };

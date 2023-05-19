@@ -9,14 +9,18 @@ const auth = getAuth(app);
 export const AuthContext = createContext(null);
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null)
+    const [loading,setLoading] = useState(true)
 
     const createUserWithEmail = (email,password)=>{
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
     const loginwithEmail = (email,password)=>{
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
     const loginwithGoogle = () =>{
+        setLoading(true);
         signInWithPopup(auth, GoogleProvider)
         .then(result=>{
             const user = result.user;
@@ -28,7 +32,8 @@ const AuthProvider = ({children}) => {
     }
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
-             setUser(loggedUser);      
+             setUser(loggedUser); 
+             setLoading(false);     
         })
         return ()=>{
             unsubscribe();
@@ -60,7 +65,8 @@ const AuthProvider = ({children}) => {
         updateUserData,
         loginwithEmail,
         loginwithGoogle,
-        logOut
+        logOut,
+        loading
         
     }
     return (
