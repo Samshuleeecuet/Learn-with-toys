@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from './../../assets/logo.jpg'
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Header = () => {
+    const {logOut} = useContext(AuthContext)
     const navList = <div className="lg:flex">
         <li><NavLink to='/' className={({ isActive }) => (isActive ? 'active' : 'default')}>Home</NavLink></li>
         <li><NavLink to='/alltoys' className={({ isActive }) => (isActive ? 'active' : 'default')}>All Toys</NavLink></li>
@@ -36,7 +38,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end mr-10">
-                <Link to='/logout' className='btn btn-primary mr-4'>Log Out</Link>
+                <Link onClick={logOut} className='btn btn-primary mr-4'>Log Out</Link>
                 <div className="avatar tooltip tooltip-bottom" data-tip="Shakil">
                     <div className="w-14 rounded-full">
                         <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />

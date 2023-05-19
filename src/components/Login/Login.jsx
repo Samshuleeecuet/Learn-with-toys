@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { FaGoogle} from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+
 
 const Login = () => {
+    const {loginwithEmail,loginwithGoogle} = useContext(AuthContext)
+    const [error,setError] = useState('')
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data =>{
         console.log(data)
+        setError('')
+        loginwithEmail(data.email,data.password)
+        .then(result=>{
+            const loggedUser = result.user
+            console.log(loggedUser)
+        })
+        .catch(err=>{
+            const msg = err.message.split('/')[1];
+            setError(msg)
+        })
     };    
 
    
@@ -23,11 +37,14 @@ const Login = () => {
               
                <input className='border rounded-lg h-12 w-72 mb-4 pl-4 border-blue-400' defaultValue="" placeholder='Enter Your Password' {...register("password",{required: true})} required />
                <br/>
+               {
+                error && <p className='text-xs text-red-600'>{error}</p>
+               }
                <p className='pb-4'>Don't have an account? <Link className='link-hover text-blue-700' to='/register'>Register</Link></p>
                
                <input className='btn btn-primary' type="submit" value="Login" />
                <div className="divider">OR</div>
-               <div className="flex btn btn-primary justify-center h-12 rounded-box place-items-center"><FaGoogle/> <span className='ml-2 font-bold'>Login with Google</span></div>
+               <div onClick={loginwithGoogle} className="flex btn btn-primary justify-center h-12 rounded-box place-items-center"><FaGoogle/> <span className='ml-2 font-bold'>Login with Google</span></div>
            </form>
            </div>
   

@@ -1,11 +1,32 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+
 
 const Register = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data =>{
+    const {createUserWithEmail,updateUserData} = useContext(AuthContext)
+    const [error,setError] = useState('')
+    const navigate = useNavigate()
+    const onSubmit = (data) =>{
+        setError('')
         console.log(data)
+        if(data.password.length<8){
+            return setError('Password Must Be Eight Character')
+        }
+        createUserWithEmail(data.email, data.password)
+        .then(result=>{
+            const user = result.user
+            updateUserData(user,data.name,data.photourl)
+            console.log(user)
+            navigate('/')
+            
+        })
+        .catch(err=>{
+            const msg = err.message.split('/');
+            setError(msg)
+        })
     }; 
     return (
         <div className='mt-14 lg:my-28'>
@@ -21,7 +42,9 @@ const Register = () => {
               
                <input className='border rounded-lg h-12 w-72 pl-4 mb-4 border-blue-400' defaultValue="" placeholder='Enter Your Password' {...register("password",{required: true})} required />
                <br/>
-               
+               {
+                error && <p className='text-xs text-red-600'>{error}</p>
+               }
                <input className='btn btn-primary' type="submit" value="Register" />
                <p className='pt-4'>Already have an account? <Link className='link-hover text-blue-700' to='/login'>Login</Link></p>
            </form>
