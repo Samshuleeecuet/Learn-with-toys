@@ -21,7 +21,7 @@ const Header = () => {
                     {navList}
                 </ul>
                 </div>
-                <Link>
+                <Link className='ml-5'>
                 <div className='flex items-center'>
                     <img className='h-12 rounded-full pr-2' src={logo} />
                     <p className="font-bold text-xl">Learn With Toys</p>
@@ -33,7 +33,7 @@ const Header = () => {
                     {navList}
                 </ul>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end mr-10">
                 <div className="avatar tooltip tooltip-bottom" data-tip="Shakil">
                     <div className="w-14 rounded-full">
                         <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />

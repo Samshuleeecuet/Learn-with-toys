@@ -32,7 +32,7 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
             element: <AddToy/>
         },
         {
-            path : 'blo',
+            path : 'blog',
             element: <Blog/>
         }
 
