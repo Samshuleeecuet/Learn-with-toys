@@ -1,11 +1,9 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 import Header from '../components/Shared/Header';
+import { Outlet } from 'react-router-dom';
 import Footer from '../components/Shared/Footer';
-import { ToastContainer } from 'react-toastify';
 
-
-const HomeLayout = () => {
+const ToyLayout = () => {
     return (
         <div>
         <div className='sticky top-0 z-50'> 
@@ -15,9 +13,8 @@ const HomeLayout = () => {
         <Outlet/>
         <Footer/>
         </div>
-        <ToastContainer />
         </div>
     );
 };
 
-export default HomeLayout;
+export default ToyLayout;

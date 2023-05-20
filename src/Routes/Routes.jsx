@@ -11,6 +11,8 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import Register from "../components/Login/Register";
 import Login from "../components/Login/Login";
 import PrivateRoutes from "./PrivateRoutes";
+import ViewDetails from "../components/Home/ViewDetails";
+import ToyLayout from "../Layout/ToyLayout";
 
   const router = createBrowserRouter([
     {
@@ -24,16 +26,21 @@ import PrivateRoutes from "./PrivateRoutes";
         },
         {
             path: 'alltoys',
-            element: <AllToys/>
+            element: <AllToys/>,
         },
         {
             path: 'mytoys',
             element: <PrivateRoutes><MyToys/></PrivateRoutes>
         },
         {
+          path: 'alltoys/toy/:id',
+          element: <PrivateRoutes><ViewDetails/></PrivateRoutes>
+        },
+        {
             path: 'addtoy',
             element: <PrivateRoutes><AddToy/></PrivateRoutes>
         },
+
         {
             path : 'blog',
             element: <Blog/>
@@ -49,6 +56,16 @@ import PrivateRoutes from "./PrivateRoutes";
 
       ]
     },
+    {
+      path: "toy",
+      element: <ToyLayout></ToyLayout>,
+      children: [
+        {
+          path: ":id",
+          element: <PrivateRoutes><ViewDetails/></PrivateRoutes>
+        }
+      ]
+    }
   ]);
 
 

@@ -1,19 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import {  Link, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Category = () => {
     const [category,setCategory] = useState('science-kit')
+    const {user} = useContext(AuthContext)
     const [toys,setAlltoys] = useState([])
+    const navigate = useNavigate()
     const handleCategory = (value)=>{
         setCategory(value)
     }
+    const OnToast = ()=>{
+        if(!user){
+            toast.error("You have to log in first to view details")
+        }
+        
+    }
+
+    
     useEffect(()=>{
         fetch(`http://localhost:5000/alltoy/${category}`)
         .then(res=> res.json())
         .then(data=> setAlltoys(data))
     },[category])
-
     const categories = <>
      <div className='grid mt-12 lg:grid-cols-3 pl-5 pr-5 gap-4'>
                 {
@@ -31,14 +44,18 @@ const Category = () => {
                                 <p>Available Quantity: {toy?.quantity}</p>
                                 </div>
                                 <div className="card-actions justify-end">
-                                <button className="btn btn-primary">View Details</button>
+                                {/* <Link to ={`alltoys/${toy._id}`}  ><button onClick={OnToast} className="btn btn-primary" >View Details</button></Link> */}
+                                <button onClick={OnToast} className="btn btn-primary" ><Link to ={`toy/${toy._id}`}>View Details</Link></button>
                                 </div>
                             </div>
+                            
                         </div>
                         
                         )
                 }
+                
             </div> 
+            
     
     </>
 
@@ -67,7 +84,9 @@ const Category = () => {
                 {categories}
                 </TabPanel>
             </Tabs>
+            <ToastContainer />
             </div>
+           
         </div>
     );
 };

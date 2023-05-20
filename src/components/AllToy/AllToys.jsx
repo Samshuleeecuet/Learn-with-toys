@@ -1,12 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+
 
 const AllToys = () => {
     const [toys,setAlltoys] = useState([])
+    const {user} = useContext(AuthContext)
     useEffect(()=>{
         fetch('http://localhost:5000/alltoy')
         .then(res=> res.json())
         .then(data=> setAlltoys(data))
     },[])
+    const OnToast = ()=>{
+      if(!user){
+          toast.error("You have to log in first to view details")
+      }
+
+  }
     //console.log(toys)
     return (
         <div>
@@ -48,7 +60,7 @@ const AllToys = () => {
         <td> {toy?.price}</td>
         <td>{toy?.quantity}</td>
         <th>
-          <button className="btn">View Details</button>
+        <button onClick={OnToast} className="btn btn-primary" ><Link to ={`toy/${toy._id}`}>View Details</Link></button>
         </th>
       </tr>
         })
@@ -58,6 +70,7 @@ const AllToys = () => {
     
   </table>
 </div>
+<ToastContainer />
         </div>
     );
 };

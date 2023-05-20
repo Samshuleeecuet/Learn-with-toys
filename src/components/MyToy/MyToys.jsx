@@ -1,9 +1,79 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const MyToys = () => {
+    const {user} = useContext(AuthContext)
+    const [email,setEmail] = useState(user.email)
+    const [toys,setMytoys] = useState([])
+    useEffect(()=>{
+        fetch(`http://localhost:5000/mytoys/${email}`)
+        .then(res=> res.json())
+        .then(data=> setMytoys(data))
+    },[email])
+
+    const tablehead = <>
+        <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Seller Name</th>
+                    <th>Sub-Category</th>
+                    <th>Price</th>
+                    <th>Available Quantity</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+    </>
+    const handleUpdate = (id)=>{
+        console.log('Update',id)
+    }
+    const handleDelete = (id)=>{
+        console.log('Delete',id)
+    }
     return (
         <div>
-           <p>My Toys</p> 
+        
+             <div className="overflow-x-auto w-full">
+               
+                    <table className="table w-full">
+                {tablehead}
+                <tbody>
+                {
+                    toys?.map(toy=>{
+                    return <tr key={toy?._id}>
+                    <td>
+                    <div className="flex items-center space-x-3">
+                        <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                        <img src={toy?.picture}/>
+                        </div>
+                        </div>
+                    </div>
+                    </td>
+                    <td>
+                    {toy?.name}
+                    </td>
+                    <td>
+                    {toy?.seller_name}
+                    </td>
+                    <td>{toy?.subcategory}</td>
+                    <td> {toy?.price}</td>
+                    <td>{toy?.quantity}</td>
+                    <th>
+                    <button onClick={()=>handleUpdate(toy._id)} className="btn btn-accent">Update</button>
+                    </th>
+                    <th>
+                    <button onClick={()=>handleDelete(toy._id)} className="btn btn-warning">Delete</button>
+                    </th>
+                </tr>
+                    })
+                }
+                </tbody>
+            </table>
+                
+            </div>
         </div>
     );
 };

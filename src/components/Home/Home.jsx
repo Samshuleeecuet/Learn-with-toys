@@ -2,6 +2,8 @@ import React from 'react';
 import Banner from './Banner';
 import Gallery from './Gallery';
 import Category from './Category';
+import { ToastContainer } from 'react-toastify';
+
 
 const Home = () => {
     return (
@@ -9,6 +11,7 @@ const Home = () => {
             <Banner/>
             <Gallery/>
             <Category/>
+            <ToastContainer />
         </>
     );
 };
