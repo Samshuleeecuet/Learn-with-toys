@@ -70,7 +70,7 @@ const Update = () => {
                 <p className='text-lg font-bold'>Quantity:</p>
                <input className='border rounded-lg h-12 w-72 mb-4 pl-4 border-blue-400' defaultValue={quantity} placeholder='Enter Quantity' name='quantity' />
                <br/>
-               <p className='text-lg font-bold'>Quantity:</p>
+               <p className='text-lg font-bold'>Description:</p>
                <textarea className='border rounded-lg h-12 w-72 mb-4 pl-4 border-blue-400' defaultValue={description} placeholder='Enter Description' name='description'  />
                <br/>
                
