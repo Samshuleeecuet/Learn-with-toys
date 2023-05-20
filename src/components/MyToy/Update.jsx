@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Form, useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 const Update = () => {
     const {id} = useParams();
     const [toy,setToy] = useState([])
     const navigate = useNavigate();
+    DynamicTitle('Update')
     const {description,price,quantity} = toy || {}
     useEffect(()=>{
         fetch(`http://localhost:5000/viewtoys/${id}`)

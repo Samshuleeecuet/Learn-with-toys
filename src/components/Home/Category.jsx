@@ -2,22 +2,41 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import {  Link, useNavigate } from 'react-router-dom';
+import {  Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Rating } from '@smastrom/react-rating'
+import Swal from 'sweetalert2';
+
 
 const Category = () => {
     const [category,setCategory] = useState('science-kit')
     const {user} = useContext(AuthContext)
     const [toys,setAlltoys] = useState([])
     const navigate = useNavigate()
+    const location = useLocation();
     const handleCategory = (value)=>{
         setCategory(value)
     }
-    const OnToast = ()=>{
+    const OnToast = (id)=>{
         if(!user){
-            toast.error("You have to log in first to view details")
+            Swal.fire({
+                text: "You have to log in first to view details",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ok'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    location.state = `toy/${id}`
+                  navigate(location.state)
+                }
+              })
         }
+        if(user){
+                navigate(`toy/${id}`)
+            }
         
     }
 
@@ -41,11 +60,15 @@ const Category = () => {
                                 <p>Category: {toy?.subcategory}</p>
                                 <div className='flex'>
                                 <p>Price: {toy?.price}</p>
-                                <p>Available Quantity: {toy?.quantity}</p>
+                                <p className='flex'>Rating:  <Rating
+                                    style={{ maxWidth: 120 ,maxHeight:50 }}
+                                    value={toy?.rating}
+                                    readOnly
+                                    /></p>
                                 </div>
-                                <div className="card-actions justify-end">
+                                <div className="card-actions mt-4 justify-end">
                                 {/* <Link to ={`alltoys/${toy._id}`}  ><button onClick={OnToast} className="btn btn-primary" >View Details</button></Link> */}
-                                <button onClick={OnToast} className="btn btn-primary" ><Link to ={`toy/${toy._id}`}>View Details</Link></button>
+                                <button onClick={()=>OnToast(toy._id)} className="btn btn-primary" >View Details</button>
                                 </div>
                             </div>
                             

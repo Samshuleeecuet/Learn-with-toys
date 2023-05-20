@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom';
+import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 const MyToys = () => {
     const {user} = useContext(AuthContext)
     const navigate = useNavigate();
+    DynamicTitle('MyToys')
     const [email,setEmail] = useState(user.email)
     const [toys,setMytoys] = useState([])
     useEffect(()=>{

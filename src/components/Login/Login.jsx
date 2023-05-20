@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { FaGoogle} from "react-icons/fa";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 
 const Login = () => {
@@ -10,7 +11,9 @@ const Login = () => {
     const [error,setError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
+    DynamicTitle('Login')
     const from = location.state?.from?.pathname || '/'
+    console.log(location)
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data =>{
         console.log(data)

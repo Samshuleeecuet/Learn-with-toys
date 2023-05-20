@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 
 const Register = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const {createUserWithEmail,updateUserData} = useContext(AuthContext)
+    DynamicTitle('Register')
     const [error,setError] = useState('')
     const navigate = useNavigate()
     const onSubmit = (data) =>{

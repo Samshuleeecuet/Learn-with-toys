@@ -22,6 +22,7 @@ import Update from "../components/MyToy/Update";
       errorElement: <ErrorPage/>,
       children:[
         {
+            
             path: '/',
             element: <Home/>
         },

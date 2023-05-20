@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 const AddToy = () => {
     const {user} =useContext(AuthContext)
+    DynamicTitle('AddToys')
     const navigate = useNavigate()
     const handleSubmit = (e)=>{
             e.preventDefault();

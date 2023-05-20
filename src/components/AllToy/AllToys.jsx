@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-
+import DynamicTitle from '../DynamicTitle/DynamicTitle';
 
 const AllToys = () => {
     const [toys,setAlltoys] = useState([])
     const {user} = useContext(AuthContext)
+    DynamicTitle('AllToys')
     useEffect(()=>{
         fetch('http://localhost:5000/alltoy')
         .then(res=> res.json())
@@ -22,7 +23,6 @@ const AllToys = () => {
     //console.log(toys)
     return (
         <div>
-
 <div className="overflow-x-auto w-full">
   <table className="table w-full">
     {/* head */}
