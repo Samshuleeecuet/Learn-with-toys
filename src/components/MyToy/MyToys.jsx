@@ -7,7 +7,8 @@ import DynamicTitle from '../DynamicTitle/DynamicTitle';
 const MyToys = () => {
     const {user} = useContext(AuthContext)
     const navigate = useNavigate();
-    DynamicTitle('MyToys')
+    DynamicTitle('MyToys');
+    
     const [email,setEmail] = useState(user.email)
     const [toys,setMytoys] = useState([])
     useEffect(()=>{

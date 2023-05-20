@@ -123,7 +123,7 @@ const AddToy = () => {
                <textarea className='border rounded-lg h-20 w-full mb-4 pl-4 border-blue-400' defaultValue='' placeholder='Enter Description' name='description'  required/>
                <br/>
                
-               <input className='btn btn-primary' type="submit" value="Update" />
+               <input className='btn btn-primary' type="submit" value="Add" />
               
            </Form>
         </div>

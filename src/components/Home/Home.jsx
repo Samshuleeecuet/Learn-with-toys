@@ -4,6 +4,7 @@ import Gallery from './Gallery';
 import Category from './Category';
 import { ToastContainer } from 'react-toastify';
 import DynamicTitle from '../DynamicTitle/DynamicTitle';
+import Animation from './Animation';
 
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
             <Banner/>
             <Gallery/>
             <Category/>
+            <Animation/>
             <ToastContainer />
         </>
     );
