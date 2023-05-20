@@ -46,7 +46,7 @@ const Update = () => {
                     if(data.modifiedCount>0){
                               Swal.fire(
                                     'Update!',
-                                    'Your file has been Updated.',
+                                    'Your toy has been Updated.',
                                     'success'
                                 )
                                 .then((result) => {

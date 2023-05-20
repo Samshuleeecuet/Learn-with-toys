@@ -52,7 +52,38 @@ const MyToys = () => {
         navigate(`/update/${id}`)
     }
     const handleDelete = (id)=>{
-        console.log('Delete',id)
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to Delete!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/delete/${id}`,{
+                    method:"DELETE",
+                    headers: {
+                        'Content-type': 'application/json'
+                    }
+                })
+                .then(res=>res.json())
+                .then(data=> {
+                    console.log(data)
+                    if(data.deletedCount>0){
+                        const remaining = toys.filter(toy=> toy._id !== id)
+                              Swal.fire(
+                            'Delete!',
+                            'Your Toy has been Delete.',
+                            'success'
+                        )
+                        setMytoys(remaining);
+                    }
+                })
+            
+            }
+          })
     }
     return (
         <div>
