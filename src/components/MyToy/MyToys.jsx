@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
 const MyToys = () => {
     const {user} = useContext(AuthContext)
+    const navigate = useNavigate();
     const [email,setEmail] = useState(user.email)
     const [toys,setMytoys] = useState([])
     useEffect(()=>{
@@ -26,15 +28,35 @@ const MyToys = () => {
                 </tr>
                 </thead>
     </>
+    const sweetalert = () =>{
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to Update!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Update it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                
+              Swal.fire(
+                'Update!',
+                'Your file has been Updated.',
+                'success'
+              )
+            }
+          })
+    }
     const handleUpdate = (id)=>{
-        console.log('Update',id)
+        navigate(`/update/${id}`)
     }
     const handleDelete = (id)=>{
         console.log('Delete',id)
     }
     return (
         <div>
-        
+            
              <div className="overflow-x-auto w-full">
                
                     <table className="table w-full">
@@ -43,6 +65,7 @@ const MyToys = () => {
                 {
                     toys?.map(toy=>{
                     return <tr key={toy?._id}>
+                        
                     <td>
                     <div className="flex items-center space-x-3">
                         <div className="avatar">
@@ -62,7 +85,7 @@ const MyToys = () => {
                     <td> {toy?.price}</td>
                     <td>{toy?.quantity}</td>
                     <th>
-                    <button onClick={()=>handleUpdate(toy._id)} className="btn btn-accent">Update</button>
+                    <button onClick={()=>handleUpdate(toy._id)} className="btn btn-info">Update</button>
                     </th>
                     <th>
                     <button onClick={()=>handleDelete(toy._id)} className="btn btn-warning">Delete</button>
@@ -74,6 +97,8 @@ const MyToys = () => {
             </table>
                 
             </div>
+
+            
         </div>
     );
 };

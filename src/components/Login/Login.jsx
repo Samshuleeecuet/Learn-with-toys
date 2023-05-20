@@ -50,11 +50,8 @@ const Login = () => {
                <div onClick={loginwithGoogle} className="flex btn btn-primary justify-center h-12 rounded-box place-items-center"><FaGoogle/> <span className='ml-2 font-bold'>Login with Google</span></div>
            </form>
            </div>
-  
 </div>
     </div>
-        
-        
         </div>
     );
 };

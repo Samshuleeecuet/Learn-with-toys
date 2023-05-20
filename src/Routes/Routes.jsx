@@ -13,6 +13,7 @@ import Login from "../components/Login/Login";
 import PrivateRoutes from "./PrivateRoutes";
 import ViewDetails from "../components/Home/ViewDetails";
 import ToyLayout from "../Layout/ToyLayout";
+import Update from "../components/MyToy/Update";
 
   const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ import ToyLayout from "../Layout/ToyLayout";
         {
             path: 'mytoys',
             element: <PrivateRoutes><MyToys/></PrivateRoutes>
+        },
+        {
+          path: 'update/:id',
+          element: <Update></Update>
         },
         {
           path: 'alltoys/toy/:id',
