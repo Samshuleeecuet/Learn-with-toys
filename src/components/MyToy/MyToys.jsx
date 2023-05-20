@@ -1,21 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
-import { useNavigate } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import DynamicTitle from '../DynamicTitle/DynamicTitle';
+import Select from 'react-select';
 
 const MyToys = () => {
     const {user} = useContext(AuthContext)
     const navigate = useNavigate();
-    DynamicTitle('MyToys');
-    
+    const [selectedOption, setSelectedOption] = useState(-1);
     const [email,setEmail] = useState(user.email)
     const [toys,setMytoys] = useState([])
+    DynamicTitle('MyToys');
+    const handlesort = (e)=>{
+        const sortValue = e.target.value;
+        setSelectedOption(sortValue);
+        console.log(sortValue)
+    }
     useEffect(()=>{
-        fetch(`http://localhost:5000/mytoys/${email}`)
+        fetch(`http://localhost:5000/mytoys?email=${email}&sort=${selectedOption}`)
         .then(res=> res.json())
         .then(data=> setMytoys(data))
-    },[email])
+    },[email,selectedOption])
 
     const tablehead = <>
         <thead>
@@ -31,26 +37,6 @@ const MyToys = () => {
                 </tr>
                 </thead>
     </>
-    const sweetalert = () =>{
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You want to Update!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Update it!'
-          }).then((result) => {
-            if (result.isConfirmed) {
-                
-              Swal.fire(
-                'Update!',
-                'Your file has been Updated.',
-                'success'
-              )
-            }
-          })
-    }
     const handleUpdate = (id)=>{
         navigate(`/update/${id}`)
     }
@@ -90,6 +76,18 @@ const MyToys = () => {
     }
     return (
         <div>
+            <div className='flex justify-end ml-10 mr-10 items-center'>
+                <h2 className='text-3xl flex-grow font-bold  mt-5 mb-5'>Toys list</h2>
+                <div className=''>
+                <Form>
+                <select onChange={handlesort} name='price' className="select select-info w-72 ">
+                    <option value='-1'>Price high to low</option>
+                    <option value='1'>Price low to high</option>
+                </select>
+                </Form>
+                </div>
+            
+            </div>
             
              <div className="overflow-x-auto w-full">
                
