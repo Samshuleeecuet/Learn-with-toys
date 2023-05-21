@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaBox, FaCoins, FaDollarSign, FaEnvelope, FaMale, FaStar } from 'react-icons/fa';
+import { FaBox, FaCoins, FaDollarSign, FaEnvelope, FaMale, FaPager, FaStar } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 
 const ViewDetails = () => {
@@ -31,6 +31,7 @@ const ViewDetails = () => {
                 <h2 className="text-lg flex gap-2"><FaCoins className='h-8 pt-1 pb-1 border-2 w-8 border-white rounded-full'/> <span>{quantity}</span></h2>
                 <h2 className="text-lg flex gap-2"><FaStar className='h-8 pt-1 pb-1 border-2 w-8 border-white rounded-full'/> <span>{rating}</span></h2>
                 <h2 className="text-lg flex gap-2"><FaDollarSign className='h-8 pt-1 pb-1 border-2 w-8 border-white rounded-full'/> <span>{price}</span></h2>
+                <h2 className="text-lg flex gap-2"><FaPager className='h-8 pt-1 pb-1 border-2 w-8 border-white rounded-full'/> <span>{description}</span></h2>
             </div>
             </div>
         </div>
