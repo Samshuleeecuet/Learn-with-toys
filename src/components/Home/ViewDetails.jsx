@@ -7,7 +7,7 @@ const ViewDetails = () => {
     const [toy,setToy] = useState([])
     const {name,picture,description,price,quantity,rating,subcategory,seller_name,email} = toy || {}
     useEffect(()=>{
-        fetch(`http://localhost:5000/viewtoys/${id}`)
+        fetch(`https://learn-with-toys-server.vercel.app/viewtoys/${id}`)
         .then(res=> res.json())
         .then(data=> {
             data.map(t=> setToy(t))

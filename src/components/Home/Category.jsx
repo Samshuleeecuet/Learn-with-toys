@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 const Category = () => {
     const [category,setCategory] = useState('science-kit')
     const {user} = useContext(AuthContext)
+    const [loading,setloading]= useState(true)
     const [toys,setAlltoys] = useState([])
     const navigate = useNavigate()
     const location = useLocation();
@@ -42,15 +43,65 @@ const Category = () => {
 
     
     useEffect(()=>{
-        fetch(`http://localhost:5000/alltoy/${category}`)
+        setloading(true)
+        fetch(`https://learn-with-toys-server.vercel.app/alltoy/${category}`)
         .then(res=> res.json())
-        .then(data=> setAlltoys(data))
+        .then(data=> {
+            setAlltoys(data)
+            setloading(false)
+        })
     },[category])
+    const loadingfile = <>
+    <div className='mx-[30%] my-20 lg:mx-[45%] lg:my-40'>
+        <div aria-label="Loading..." role="status" className="flex items-center space-x-2">
+  <svg className="h-12 w-12 animate-spin stroke-gray-500" viewBox="0 0 256 256">
+    <line x1="128" y1="32" x2="128" y2="64" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+    <line
+      x1="195.9"
+      y1="60.1"
+      x2="173.3"
+      y2="82.7"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="24"></line>
+    <line x1="224" y1="128" x2="192" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+    <line
+      x1="195.9"
+      y1="195.9"
+      x2="173.3"
+      y2="173.3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="24"></line>
+    <line x1="128" y1="224" x2="128" y2="192" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+    <line
+      x1="60.1"
+      y1="195.9"
+      x2="82.7"
+      y2="173.3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="24"></line>
+    <line x1="32" y1="128" x2="64" y2="128" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+    <line
+      x1="60.1"
+      y1="60.1"
+      x2="82.7"
+      y2="82.7"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="24"></line>
+  </svg>
+  <span className="text-xs font-medium text-gray-500">Data Loading...</span>
+</div>
+        </div>
+    
+    </>
     const categories = <>
      <div className='grid mt-12 lg:grid-cols-3 pl-5 pr-5 gap-4'>
                 {
                     toys?.map(toy=> 
-                        <div className="card w-[450px] glass" key={toy?._id}>
+                        <div className="card lg:w-[400px] glass" key={toy?._id}>
                             <figure><img className='w-96 h-52' src={toy?.picture} alt="car!"/></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{toy?.name}</h2>
@@ -96,15 +147,22 @@ const Category = () => {
                 <Tab onClick={()=>handleCategory('math-learning-toys')}>Math Learning Toys</Tab>
                 <Tab onClick={()=>handleCategory('engineering-kits')}>Engineering kits</Tab>
                 </TabList>
+    
 
                 <TabPanel className='border-t-2'>
-                {categories}
+                    {
+                        loading ? <>{loadingfile}</>:<>{categories}</>
+                    }
                 </TabPanel>
                 <TabPanel>
-                {categories}
+                {
+                        loading ? <>{loadingfile}</>:<>{categories}</>
+                }
                 </TabPanel>
                 <TabPanel>
-                {categories}
+                {
+                    loading ? <>{loadingfile}</>:<>{categories}</>
+                }
                 </TabPanel>
             </Tabs>
             <ToastContainer />

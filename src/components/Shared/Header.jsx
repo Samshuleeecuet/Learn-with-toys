@@ -12,6 +12,7 @@ const Header = () => {
             user && <>
             <li><NavLink  to='/mytoys' className={({ isActive }) => (isActive ? 'active' : 'default')}>My Toys</NavLink></li>
         <li><NavLink  to='/addtoy' className={({ isActive }) => (isActive ? 'active' : 'default')}>Add a Toy</NavLink></li>
+        <li className='block lg:hidden'><NavLink onClick={logOut} className={({ isActive }) => (isActive ? 'active' : 'default')}>Log Out</NavLink></li>
             </>
         }
         <li><NavLink  to='/blog' className={({ isActive }) => (isActive ? 'active' : 'default')}>Blogs</NavLink></li>
@@ -19,6 +20,8 @@ const Header = () => {
             !user && <>
             <li><NavLink  to='/login' className={({ isActive }) => (isActive ? 'active' : 'default')}>Login</NavLink></li>
         <li><NavLink  to='/register' className={({ isActive }) => (isActive ? 'active' : 'default')}>Register</NavLink></li>
+        <li>
+        </li>
             </>
         }
     </div>
@@ -36,7 +39,7 @@ const Header = () => {
                 <Link className='ml-5'>
                 <div className='flex items-center font-serif'>
                     <img className='h-12 rounded-full pr-2' src={logo} />
-                    <p className="font-bold text-xl">Learn With Toys</p>
+                    <p className="font-bold w-48 lg:text-xl">Learn With Toys</p>
                 </div>
                 </Link>
             </div>
@@ -48,7 +51,9 @@ const Header = () => {
             {
                 user && <>
                 <div className="navbar-end mr-10">
+                <div className='hidden lg:block'>
                 <Link onClick={logOut} className='btn btn-primary mr-4'>Log Out</Link>
+                </div>
                 <div className="avatar tooltip tooltip-bottom" data-tip={user.displayName
 }>
                     <div className="w-14 rounded-full">

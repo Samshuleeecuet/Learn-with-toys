@@ -5,6 +5,7 @@ import Category from './Category';
 import { ToastContainer } from 'react-toastify';
 import DynamicTitle from '../DynamicTitle/DynamicTitle';
 import Animation from './Animation';
+import LearnMethod from './LearnMethod';
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
             <Gallery/>
             <Category/>
             <Animation/>
+            <LearnMethod/>
             <ToastContainer />
         </>
     );

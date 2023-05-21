@@ -21,12 +21,12 @@ const Gallery = () => {
     
     return (
 
-        <div className='lg:flex lg:ml-5 lg:mr-12 lg:mt-12 items-center'>
-            <div className='w-5/12 h-[600px]'>
+        <div className='flex flex-col-reverse lg:flex-row lg:ml-5 lg:mr-0 lg:mt-12 items-center'>
+            <div className='w-5/6  lg:w-4/12 pt-5 lg:pt-0 lg:h-[600px]'>
             <ImageGallery autoPlay={true} items={images} />
             </div>
             <div className='flex-grow lg:pl-64'>
-                 <p className='font-bold text-5xl font-serif pb-10'>Learn About</p>
+                 <p className='font-bold text-3xl mt-10 lg:mt-0 lg:text-5xl font-serif pb-10'>Learn About</p>
                  <div className='font-semibold text-xl font-serif'>
                      <p>Science kits</p>
                      <p>Math Learning Toys</p>

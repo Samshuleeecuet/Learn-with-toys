@@ -10,11 +10,11 @@ const Animation = () => {
         delay: 0,
       });
     return (
-        <div className='mt-20 min-h-[300px]'>
-            <div className='text-center font-bold text-3xl'>
+        <div className='mt-20 min-h-[300px] max-w-[300px] lg:max-w-[1400px]'>
+            <div className='text-center font-bold text-lg lg:text-3xl'>
                 <p>Enjoy and Learn With Animation</p>
             </div>
-            <div className='h-[300px] mt-20 w-full flex'>
+            <div className='lg:h-[300px] mt-20 w-full flex'>
             <div className='h-50 ml-[10%] w-1/2 inline' data-aos="fade-up-right"><span><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSokDGGXuvzobr7uJnuhUO9hJxGkQfv9nZeiQ'></img></span></div>
             <div  className='h-50 w-1/2 inline object-cover' data-aos="flip-left">
                 <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdhBeAiDb2oiAnsN5yvqociOuxLrIATmnp4w'/>

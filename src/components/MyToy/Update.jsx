@@ -10,7 +10,7 @@ const Update = () => {
     DynamicTitle('Update')
     const {description,price,quantity} = toy || {}
     useEffect(()=>{
-        fetch(`http://localhost:5000/viewtoys/${id}`)
+        fetch(`https://learn-with-toys-server.vercel.app/viewtoys/${id}`)
         .then(res=> res.json())
         .then(data=> {
             data.map(t=> setToy(t))
@@ -36,7 +36,7 @@ const Update = () => {
             confirmButtonText: 'Yes, Update it!'
           }).then((result) => {
             if (result.isConfirmed) {    
-                fetch(`http://localhost:5000/updatetoy/${id}`,{
+                fetch(`https://learn-with-toys-server.vercel.app/updatetoy/${id}`,{
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
